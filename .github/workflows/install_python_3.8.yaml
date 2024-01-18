@@ -1,0 +1,22 @@
+name: Install Python
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  install_python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install important packages
+        run: sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev
+      - name: Extract and Install Python
+        run: |
+          cd /home/ \
+          curl -O https://www.python.org/ftp/python/3.8.10/Python-3.8.10.tar.xz \
+          tar -xf Python-3.8.10.tar.xz \
+          cd Python-3.8.10 \
+          ./configure --enable-optimizations \
+          make -j 4 \
+          sudo make altinstall \
+
+      - name: Confirm that Python 3.8 is installed
+        run: which python3.8
