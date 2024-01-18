@@ -1,0 +1,14 @@
+name: CI
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, world!
+      - name: checks Python version
+        run: python --version
+      - name: checks git version
+        run: git --version
